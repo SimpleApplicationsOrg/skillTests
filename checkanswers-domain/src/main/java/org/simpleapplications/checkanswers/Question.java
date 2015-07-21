@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.Validate;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
+@NodeEntity
 public class Question {
 	
+	@GraphId
 	private Long id;
 	private String text;
 	

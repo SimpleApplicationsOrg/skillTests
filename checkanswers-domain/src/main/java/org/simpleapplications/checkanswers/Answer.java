@@ -1,9 +1,13 @@
 package org.simpleapplications.checkanswers;
 
 import org.apache.commons.lang3.Validate;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
+@NodeEntity
 public class Answer {
 
+	@GraphId
 	private Long id;
 	private String text;
 	private boolean correct;

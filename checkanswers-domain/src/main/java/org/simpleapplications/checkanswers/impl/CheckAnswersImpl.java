@@ -8,11 +8,15 @@ import org.simpleapplications.checkanswers.Answer;
 import org.simpleapplications.checkanswers.CheckAnswers;
 import org.simpleapplications.checkanswers.Question;
 import org.simpleapplications.checkanswers.dao.QuestionDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CheckAnswersImpl implements CheckAnswers {
 
 	private QuestionDao questionDao;
 
+	@Autowired
 	public CheckAnswersImpl(QuestionDao questionDao) {
 		Validate.notNull(questionDao);
 		this.questionDao = questionDao;
