@@ -20,7 +20,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class> configuration-service.ConfigurationServiceApplication</start-class>
+		<start-class> org.simpleapplications.service.configuration.ConfigurationServiceApplication</start-class>
 		<java.version>1.8</java.version>
 	</properties>
 

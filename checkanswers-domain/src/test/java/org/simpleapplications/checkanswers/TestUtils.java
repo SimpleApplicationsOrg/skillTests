@@ -8,13 +8,8 @@ import java.util.List;
 import org.apache.commons.lang3.RandomUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TestUtils {
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestUtils.class);
 
 	public enum SampleDataType {
 		REQUEST, SOURCE
@@ -34,25 +29,18 @@ public class TestUtils {
 			questions = mapper.readValue(jsonFile, TypeFactory.defaultInstance()
 					.constructCollectionType(List.class, Question.class));
 		} catch (IOException e) {
-			LOGGER.error(e.getMessage(), e);
+			System.out.println(e.getMessage());
 		}
 		return questions;
 	}
 
 	public static List<Question> getDataSource() {
 		List<Question> questions = generateQuestions(20L, SampleDataType.SOURCE);
-		/*
-		 * ObjectMapper mapper = new ObjectMapper(); File jsonFile = new
-		 * File("datasource.json"); try { mapper.writeValue(jsonFile,
-		 * questions); } catch (IOException e) { LOGGER.error(e.getMessage(),e);
-		 * }
-		 */
 		return questions;
 	}
 
 	public static List<Question> getDataRequest() {
 		return getDataSource("answeredQuestionCorrectly.json");
-		// generateQuestions(20L, SampleDataType.REQUEST);
 	}
 	
 	public static List<Question> getDataWrongQuestion() {
