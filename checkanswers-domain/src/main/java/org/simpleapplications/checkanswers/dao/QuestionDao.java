@@ -10,5 +10,7 @@ public interface QuestionDao {
 	List<Answer> getCorrectAnswers(Long id);
 	
 	Question getQuestion(Long id);
+	
+	Question getQuestionByCode(String code);
 
 }

@@ -32,4 +32,9 @@ public class QuestionDaoImpl implements QuestionDao {
 		return questionDao.findOne(id);
 	}
 
+	@Override
+	public Question getQuestionByCode(String code) {
+		return questionDao.getQuestionByCode(code);
+	}
+
 }

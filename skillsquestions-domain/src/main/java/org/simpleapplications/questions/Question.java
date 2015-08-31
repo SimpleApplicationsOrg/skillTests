@@ -16,6 +16,7 @@ public class Question {
 
     @GraphId
     private Long id;
+    private String code;
     private String text;
     @Fetch @RelatedTo(type = "HAS_ANSWER", direction = Direction.OUTGOING)
     private List<Answer> answers;
@@ -24,15 +25,6 @@ public class Question {
 
     public Question() {} 
     
-    public Question(String text, List<Answer> answers, Skill skill) {
-        validateText(text);
-        validateSkill(skill);
-        validateAnswers(answers);
-        this.text = text;
-        this.answers = answers;
-        this.skill = skill;
-    }
-
     private void validateAnswers(List<Answer> answers) {
         if (CollectionUtils.isEmpty(answers)) {
             throw new IllegalArgumentException(
@@ -48,28 +40,46 @@ public class Question {
         }
     }
 
-    private void validateSkill(Skill skill) {
-        if (skill == null) {
-            throw new IllegalArgumentException("Skill can not be null");
-        }
-    }
+	public Long getId() {
+		return id;
+	}
 
-    private void validateText(String text) {
-        if (StringUtils.isEmpty(text)) {
-            throw new IllegalArgumentException("Text can not be null or empty");
-        }
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getText() {
-        return this.text;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public List<Answer> getAnswers() {
-        return this.answers;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public Skill getSkill() {
-        return this.skill;
-    }
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		validateAnswers(answers);
+		this.answers = answers;
+	}
+
+	public Skill getSkill() {
+		return skill;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
 
 }

@@ -17,7 +17,9 @@ public class QuestionTest {
         List<Answer> answers = TestUtils.getGoodAnswers();
         Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
         
-        Question question = new Question("Question?", answers, skill);
+        Question question = new Question();
+        question.setAnswers(answers);
+        question.setSkill(skill);
         assertTrue("Not a valid question", question.getText() != null
                 && question.getAnswers() != null && question.getSkill() != null);
     }

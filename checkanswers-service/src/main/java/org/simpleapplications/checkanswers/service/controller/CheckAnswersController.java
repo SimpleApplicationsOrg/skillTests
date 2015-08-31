@@ -1,10 +1,12 @@
 package org.simpleapplications.checkanswers.service.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.simpleapplications.checkanswers.CheckAnswers;
 import org.simpleapplications.checkanswers.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +23,10 @@ public class CheckAnswersController {
         this.checkAnswers = checkAnswers;
     }
 
-    @RequestMapping(value = "/checkAnwers", method = RequestMethod.GET)
-    public List<Question> checkAnswers(List<Question> answeredQuestions) {
+    @RequestMapping(value = "/checkAnswers", method = RequestMethod.POST)
+    public List<Question> checkAnswers(@RequestBody List<Question> answeredQuestions) {
 
-        List<Question> questions = checkAnswers.evaluate(answeredQuestions);
+    	List<Question> questions = checkAnswers.evaluate(answeredQuestions);
 
         return questions;
     }

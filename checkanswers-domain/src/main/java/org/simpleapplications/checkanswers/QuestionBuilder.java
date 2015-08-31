@@ -7,7 +7,8 @@ public class QuestionBuilder {
 	private Question question;
 	
 	public QuestionBuilder(Long questionId) {
-		this.question = new Question(questionId);
+		this.question = new Question();
+		this.question.setId(questionId);
 	}
 
 	public QuestionBuilder setText(String text) {

@@ -7,7 +7,8 @@ import org.simpleapplications.checkanswers.dao.QuestionDao;
 
 public class QuestionDaoMock implements QuestionDao {
 
-	private final List<Question> dataSource = TestUtils.getDataSource("onequestioncorrect1.json");
+	private final List<Question> dataSource = TestUtils
+			.getDataSource("onequestioncorrect1.json");
 
 	@Override
 	public List<Answer> getCorrectAnswers(Long id) {
@@ -23,6 +24,12 @@ public class QuestionDaoMock implements QuestionDao {
 	@Override
 	public Question getQuestion(Long id) {
 		return dataSource.stream().filter(a -> a.getId().equals(id))
+				.findFirst().get();
+	}
+
+	@Override
+	public Question getQuestionByCode(String code) {
+		return dataSource.stream().filter(a -> a.getCode().equals(code))
 				.findFirst().get();
 	}
 

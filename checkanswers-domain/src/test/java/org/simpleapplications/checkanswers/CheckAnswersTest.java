@@ -26,7 +26,8 @@ public class CheckAnswersTest {
 	@Test
 	public void testCreateQuestion() {
 		Long questionId = 1L;
-		Question question = new Question(questionId);
+		Question question = new Question();
+		question.setId(questionId);
 		assertTrue("Question creation failed",
 				question.getId().equals(questionId));
 	}
@@ -34,7 +35,8 @@ public class CheckAnswersTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateQuestion0() {
 		Long questionId = 0L;
-		Question question = new Question(questionId);
+		Question question = new Question();
+		question.setId(questionId);
 		question.getId();
 	}
 
@@ -54,7 +56,8 @@ public class CheckAnswersTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void sestSetAnswersWithNull() {
-		Question question = new Question(1L);
+		Question question = new Question();
+		question.setId(1L);
 		List<Answer> answers = new ArrayList<>();
 		answers.add(null);
 		question.setAnswers(answers);

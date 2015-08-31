@@ -12,18 +12,13 @@ public class Question {
 	
 	@GraphId
 	private Long id;
+	private String code;
 	private String text;
 	
 	private List<Answer> answers;
 
-	public Question() {};
-	
-	public Question(Long id) {
-		Validate.isTrue(id > 0, "Id has to be a positive Long");
-		this.setId(id);
-	}
-
 	public void setId(Long id) {
+		Validate.isTrue(id > 0, "Id has to be a positive Long");
 		this.id = id;
 	}
 	
@@ -31,6 +26,14 @@ public class Question {
 		return this.id;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getCode() {
+		return this.code;
+	}
+	
 	public void setText(String text) {
 		this.text = text;
 	}
