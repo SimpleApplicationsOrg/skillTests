@@ -66,27 +66,25 @@ public class CheckAnswersTest {
 	@Test
 	public void testQuestionBuilder() {
 		final Long id = 1L;
-		final String text = "Text";
 		QuestionBuilder builder = new QuestionBuilder(id);
 		List<Answer> answers = TestUtils.getCorrectCreatedAnswersList();
-		builder.setText(text).setAnswers(answers);
+		builder.setAnswers(answers);
 		Question question = builder.build();
 		assertTrue(
 				"Error building question",
 				question != null && question.getId().equals(id)
-						&& text.equals(question.getText())
 						&& question.getAnswers().equals(answers));
 	}
 
 	@Test
 	public void testAnswerBuilder() {
 		final Long id = 1L;
-		final String text = "Text";
+		final String code = "Code";
 		AnswerBuilder builder = new AnswerBuilder(id);
-		builder.setText(text).setCorrect(true);
+		builder.setCode(code).setCorrect(true);
 		Answer answer = builder.build();
 		assertTrue("Error building answer", answer != null
-				&& answer.getId().equals(id) && text.equals(answer.getText())
+				&& answer.getId().equals(id) && code.equals(answer.getCode())
 				&& answer.isCorrect());
 	}
 
@@ -130,7 +128,7 @@ public class CheckAnswersTest {
 		List<Question> answeredQuestions = TestUtils.getDataWrongQuestion();
 		List<Question> evaluatedQuestions = checkAnswers
 				.evaluate(answeredQuestions);
-		assertTrue("Add correct anwers not woring properly", evaluatedQuestions
+		assertTrue("Add correct anwers not working properly", evaluatedQuestions
 				.get(0).getAnswers().size() == 2);
 	}
 

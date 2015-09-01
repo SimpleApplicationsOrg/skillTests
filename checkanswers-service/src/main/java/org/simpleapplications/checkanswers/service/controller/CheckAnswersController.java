@@ -1,6 +1,5 @@
 package org.simpleapplications.checkanswers.service.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.simpleapplications.checkanswers.CheckAnswers;

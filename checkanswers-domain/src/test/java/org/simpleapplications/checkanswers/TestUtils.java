@@ -55,7 +55,7 @@ public class TestUtils {
 			Question question;
 			if (type.equals(SampleDataType.SOURCE)) {
 				question = new QuestionBuilder(i)
-						.setText("Question number " + i + "?")
+						.setCode("Code" + i)
 						.setAnswers(generateAnswers(type)).build();
 			} else {
 				question = new QuestionBuilder(i).setAnswers(
@@ -75,7 +75,7 @@ public class TestUtils {
 			Answer answer;
 			if (type.equals(SampleDataType.SOURCE)) {
 				answer = new AnswerBuilder(i)
-						.setText("Answer number " + i + "?")
+						.setCode("Answer" + i)
 						.setCorrect(correct).build();
 			} else {
 				answer = new AnswerBuilder(RandomUtils.nextLong(1L, 6L))

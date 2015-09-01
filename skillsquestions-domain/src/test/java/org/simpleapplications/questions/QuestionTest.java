@@ -15,55 +15,88 @@ public class QuestionTest {
     @Test
     public void testQuestionCretion() {
         List<Answer> answers = TestUtils.getGoodAnswers();
-        Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
+        Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGGINER);
         
-        Question question = new Question();
-        question.setAnswers(answers);
+        String codeQuestion = "CodeQuestion";
+        Question question = new Question(codeQuestion);
+        question.setText("Text");
         question.setSkill(skill);
-        assertTrue("Not a valid question", question.getText() != null
-                && question.getAnswers() != null && question.getSkill() != null);
+        question.setAnswers(answers);
+        
+        assertTrue("Question not properly created", codeQuestion.equals(question.getCode()));       		
+    }
+
+    @Test
+    public void testSetSkill() {
+        Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGGINER);
+        
+        String codeQuestion = "CodeQuestion";
+        Question question = new Question(codeQuestion);
+        question.setSkill(skill);
+        
+        assertTrue("Skill not properly set", skill.equals(question.getSkill()));       		
+    }
+
+    @Test
+    public void testSetText() {
+        String codeQuestion = "CodeQuestion";
+        Question question = new Question(codeQuestion);
+        String text = "Text";
+        question.setText(text);
+        
+        assertTrue("Text not properly set", text.equals(question.getText()));       		
+    }
+
+    @Test
+    public void testSetAnswers() {
+        List<Answer> answers = TestUtils.getGoodAnswers();
+        
+        String codeQuestion = "CodeQuestion";
+        Question question = new Question(codeQuestion);
+        question.setAnswers(answers);
+        
+        assertTrue("Answers not properly set", answers.equals(question.getAnswers()));       		
+    }
+   
+    @Test(expected = NullPointerException.class)
+    public void testQuestionCretionCodeNull() {
+        new Question(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testQuestionCretionTextNull() {
-        List<Answer> answers = new ArrayList<>();
-        Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
-        new Question(null, answers, skill);
+    public void testQuestionCretionCodeBlank() {
+        new Question("");
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testSetTextNull() {
+        Question question = new Question("Code");
+        question.setText(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testQuestionCretionTextEmpty() {
-        List<Answer> answers = new ArrayList<>();
-        Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
-        new Question("", answers, skill);
+    public void testSetTextEmpty() {
+        Question question = new Question("Code");
+        question.setText("");
     }
-
-    @Test(expected = IllegalArgumentException.class)
+   
+    @Test(expected = NullPointerException.class)
     public void testQuestionCretionSkillNull() {
-        List<Answer> answers = new ArrayList<>();
-        Skill skill = null;
-        new Question("Text", answers, skill);
+        Question question = new Question("Code");
+        question.setSkill(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testQuestionCretionAnswersNull() {
-        List<Answer> answers = null;
-        Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
-        new Question("Question?", answers, skill);
+        Question question = new Question("Code");
+        question.setAnswers(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testQuestionCretionAnswersEmpty() {
         List<Answer> answers = new ArrayList<>();
-        Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
-        new Question("Question?", answers, skill);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testQuestionCretionAnswersAllFalse() {
-        List<Answer> answers = TestUtils.getBadAnswers();
-        Skill skill = new Skill("Code", "Name",SkillLevel.BEGGINER);
-        new Question("Question?", answers, skill);
+        Question question = new Question("Code");
+        question.setAnswers(answers);
     }
 
 

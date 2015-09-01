@@ -3,7 +3,7 @@ package org.simpleapplications.questions;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.neo4j.graphdb.Direction;
 import org.simpleapplications.skills.Skill;
 import org.springframework.data.neo4j.annotation.Fetch;
@@ -25,18 +25,18 @@ public class Question {
 
     public Question() {} 
     
-    private void validateAnswers(List<Answer> answers) {
-        if (CollectionUtils.isEmpty(answers)) {
-            throw new IllegalArgumentException(
-                    "Answers ca not be null or empty");
+    public Question(String code) {
+		this.setCode(code);
+	}
+
+	private void validateAnswers(List<Answer> answers) {
+        if(answers == null) {
+            throw new NullPointerException(
+                    "Answers can not be null");
         }
-        if (answers.size() < 2) {
+		if(CollectionUtils. isEmpty(answers)) {
             throw new IllegalArgumentException(
-                    "It should have at least two questions");
-        }
-        if (answers.stream().noneMatch(a -> a.isCorrect())) {
-            throw new IllegalArgumentException(
-                    "It should have at least one correct answer");
+                    "Answers can not be empty");
         }
     }
 
@@ -53,6 +53,7 @@ public class Question {
 	}
 
 	public void setCode(String code) {
+		Validate.notBlank(code,"Code can not be blank");
 		this.code = code;
 	}
 
@@ -61,6 +62,7 @@ public class Question {
 	}
 
 	public void setText(String text) {
+		Validate.notBlank(text,"Text can not be blank");
 		this.text = text;
 	}
 
@@ -78,6 +80,7 @@ public class Question {
 	}
 
 	public void setSkill(Skill skill) {
+		Validate.notNull(skill,"Skill can not be null");
 		this.skill = skill;
 	}
 

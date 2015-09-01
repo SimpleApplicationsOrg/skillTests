@@ -40,26 +40,26 @@ public class CheckAnswersImpl implements CheckAnswers {
 	
 	void validateAnswer(Question answeredQuestion) {
 		List<Answer> correctAnswers = questionDao
-				.getCorrectAnswers(answeredQuestion.getId());
+				.getCorrectAnswers(answeredQuestion.getCode());
 
 		answeredQuestion
 				.getAnswers()
 				.stream()
 				.filter(a -> CollectionUtils.exists(correctAnswers, b -> b
-						.getId().equals(a.getId())))
+						.getCode().equals(a.getCode())))
 				.forEach(a -> a.setCorrect(true));
 		
 	}
 	
 	void addCorrectAnswers(Question answeredQuestion) {
 		List<Answer> correctAnswers = questionDao
-				.getCorrectAnswers(answeredQuestion.getId());
+				.getCorrectAnswers(answeredQuestion.getCode());
 
 		correctAnswers
 		.stream()
 		.filter(a -> !CollectionUtils.exists(
 				answeredQuestion.getAnswers(),
-				b -> b.getId().equals(a.getId())))
+				b -> b.getCode().equals(a.getCode())))
 		.forEach(a -> answeredQuestion.getAnswers().add(a));
 
 	}

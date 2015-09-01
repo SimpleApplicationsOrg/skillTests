@@ -13,7 +13,10 @@ public class TestUtils {
     public static Question getGoodQuestion() {
         List<Answer> answers = TestUtils.getGoodAnswers();
         Skill skill = new Skill("Code", "Name", SkillLevel.BEGGINER);
-        Question question = new Question("Question?", answers, skill);
+        Question question = new Question("Code");
+        question.setText("Text");
+        question.setSkill(skill);
+        question.setAnswers(answers);
         return question;
     }
     

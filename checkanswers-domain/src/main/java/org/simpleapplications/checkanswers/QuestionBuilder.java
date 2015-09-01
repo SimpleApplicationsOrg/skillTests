@@ -10,9 +10,9 @@ public class QuestionBuilder {
 		this.question = new Question();
 		this.question.setId(questionId);
 	}
-
-	public QuestionBuilder setText(String text) {
-		this.question.setText(text);
+	
+	public QuestionBuilder setCode(String code) {
+		this.question.setCode(code);
 		return this;
 	}
 

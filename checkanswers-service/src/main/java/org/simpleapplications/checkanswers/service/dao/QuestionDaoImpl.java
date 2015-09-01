@@ -20,8 +20,8 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<Answer> getCorrectAnswers(Long id) {
-		Question question = getQuestion(id);
+	public List<Answer> getCorrectAnswers(String code) {
+		Question question = getQuestionByCode(code);
 		List<Answer> correctAnswers = question.getAnswers().stream()
 				.filter(a -> a.isCorrect()).collect(Collectors.toList());
 		return correctAnswers;

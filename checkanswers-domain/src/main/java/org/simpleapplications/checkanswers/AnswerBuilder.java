@@ -8,11 +8,11 @@ public class AnswerBuilder {
 		this.answer = new Answer(id);
 	}
 
-	public AnswerBuilder setText(String text) {
-		this.answer.setText(text);
+	public AnswerBuilder setCode(String code) {
+		this.answer.setCode(code);
 		return this;
 	}
-
+	
 	public AnswerBuilder setCorrect(Boolean correct) {
 		this.answer.setCorrect(correct);
 		return this;
