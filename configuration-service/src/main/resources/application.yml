@@ -6,4 +6,4 @@ spring:
     config:
       server:
         git:
-          uri: file://${HOME}/Documents/workspaces/skillTests/services-configuration
+          uri: file://${HOME}/Documents/workspaces/services-configuration
