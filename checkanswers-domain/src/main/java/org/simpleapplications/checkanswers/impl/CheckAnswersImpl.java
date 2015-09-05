@@ -14,54 +14,53 @@ import org.springframework.stereotype.Component;
 @Component
 public class CheckAnswersImpl implements CheckAnswers {
 
-	private QuestionDao questionDao;
+  private QuestionDao questionDao;
 
-	@Autowired
-	public CheckAnswersImpl(QuestionDao questionDao) {
-		Validate.notNull(questionDao);
-		this.questionDao = questionDao;
-	}
+  @Autowired
+  public CheckAnswersImpl(QuestionDao questionDao) {
+    Validate.notNull(questionDao);
+    this.questionDao = questionDao;
+  }
 
-	@Override
-	public List<Question> evaluate(List<Question> answeredQuestions) {
+  @Override
+  public List<Question> evaluate(List<Question> answeredQuestions) {
 
-		Validate.isTrue(CollectionUtils.isNotEmpty(answeredQuestions),
-				"Answered question can not be empty");
-		Validate.notEmpty(answeredQuestions.toArray(),
-				"The questions can not be empty");
+    Validate.isTrue(CollectionUtils.isNotEmpty(answeredQuestions),
+        "Answered question can not be empty");
+    Validate.notEmpty(answeredQuestions.toArray(),
+        "The questions can not be empty");
 
-		answeredQuestions.stream().forEach(a -> validateAnswer(a));
-		
-		answeredQuestions.stream().forEach(a -> addCorrectAnswers(a));
-		
+    answeredQuestions.stream().forEach(a -> validateAnswer(a));
 
-		return answeredQuestions;
-	}
-	
-	void validateAnswer(Question answeredQuestion) {
-		List<Answer> correctAnswers = questionDao
-				.getCorrectAnswers(answeredQuestion.getCode());
+    answeredQuestions.stream().forEach(a -> addCorrectAnswers(a));
 
-		answeredQuestion
-				.getAnswers()
-				.stream()
-				.filter(a -> CollectionUtils.exists(correctAnswers, b -> b
-						.getCode().equals(a.getCode())))
-				.forEach(a -> a.setCorrect(true));
-		
-	}
-	
-	void addCorrectAnswers(Question answeredQuestion) {
-		List<Answer> correctAnswers = questionDao
-				.getCorrectAnswers(answeredQuestion.getCode());
+    return answeredQuestions;
+  }
 
-		correctAnswers
-		.stream()
-		.filter(a -> !CollectionUtils.exists(
-				answeredQuestion.getAnswers(),
-				b -> b.getCode().equals(a.getCode())))
-		.forEach(a -> answeredQuestion.getAnswers().add(a));
+  void validateAnswer(Question answeredQuestion) {
+    List<Answer> correctAnswers = questionDao
+        .getCorrectAnswers(answeredQuestion.getCode());
 
-	}
+    answeredQuestion
+        .getAnswers()
+        .stream()
+        .filter(
+            a -> CollectionUtils.exists(correctAnswers, b -> b.getCode()
+                .equals(a.getCode()))).forEach(a -> a.setCorrect(true));
+
+  }
+
+  void addCorrectAnswers(Question answeredQuestion) {
+    List<Answer> correctAnswers = questionDao
+        .getCorrectAnswers(answeredQuestion.getCode());
+
+    correctAnswers
+        .stream()
+        .filter(
+            a -> !CollectionUtils.exists(answeredQuestion.getAnswers(), b -> b
+                .getCode().equals(a.getCode())))
+        .forEach(a -> answeredQuestion.getAnswers().add(a));
+
+  }
 
 }

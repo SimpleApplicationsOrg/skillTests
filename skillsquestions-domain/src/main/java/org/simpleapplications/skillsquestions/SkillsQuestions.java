@@ -7,8 +7,8 @@ import org.simpleapplications.skills.Skill;
 
 public interface SkillsQuestions {
 
-    List<Question> getQuestions(List<Skill> skills);
-    
-    List<Question> getQuestions(String skill, String level);
+  List<Question> getQuestions(List<Skill> skills);
+
+  List<Question> getQuestions(String skill, String level);
 
 }

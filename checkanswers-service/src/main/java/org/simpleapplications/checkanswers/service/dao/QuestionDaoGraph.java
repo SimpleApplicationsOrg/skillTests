@@ -5,6 +5,6 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 
 public interface QuestionDaoGraph extends GraphRepository<Question> {
 
-	Question getQuestionByCode(String code);
+  Question getQuestionByCode(String code);
 
 }

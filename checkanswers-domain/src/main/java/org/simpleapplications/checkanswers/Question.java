@@ -15,37 +15,38 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Question {
 
-	@GraphId
-	private Long id;
-	private String code;
-	@Fetch @RelatedTo(type = "HAS_ANSWER", direction = Direction.OUTGOING)
-	private List<Answer> answers;
+  @GraphId
+  private Long id;
+  private String code;
+  @Fetch
+  @RelatedTo(type = "HAS_ANSWER", direction = Direction.OUTGOING)
+  private List<Answer> answers;
 
-	public void setId(Long id) {
-		Validate.isTrue(id > 0, "Id has to be a positive Long");
-		this.id = id;
-	}
+  public void setId(Long id) {
+    Validate.isTrue(id > 0, "Id has to be a positive Long");
+    this.id = id;
+  }
 
-	public Long getId() {
-		return this.id;
-	}
+  public Long getId() {
+    return this.id;
+  }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-	public String getCode() {
-		return this.code;
-	}
+  public String getCode() {
+    return this.code;
+  }
 
-	public List<Answer> getAnswers() {
-		return this.answers == null ? new ArrayList<Answer>() : this.answers;
-	}
+  public List<Answer> getAnswers() {
+    return this.answers == null ? new ArrayList<Answer>() : this.answers;
+  }
 
-	public void setAnswers(List<Answer> answers) {
-		Validate.noNullElements(answers.toArray(),
-				"Question can not have null answers");
-		this.answers = answers;
-	}
+  public void setAnswers(List<Answer> answers) {
+    Validate.noNullElements(answers.toArray(),
+        "Question can not have null answers");
+    this.answers = answers;
+  }
 
 }

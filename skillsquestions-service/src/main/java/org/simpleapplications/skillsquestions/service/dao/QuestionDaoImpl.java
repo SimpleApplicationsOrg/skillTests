@@ -13,29 +13,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class QuestionDaoImpl implements QuestionDao {
 
-    private QuestionDaoGraph questionDao;
+  private QuestionDaoGraph questionDao;
 
-    @Autowired
-    public QuestionDaoImpl(QuestionDaoGraph questionDao) {
-        this.questionDao = questionDao;
-    }
+  @Autowired
+  public QuestionDaoImpl(QuestionDaoGraph questionDao) {
+    this.questionDao = questionDao;
+  }
 
-    @Override
-    public List<Question> getQuestions(List<Skill> skills) {
-        List<Question> questions = new ArrayList<>();
-        for (Skill skill : skills) {
-            List<Question> questionsGraph = questionDao.getQuestions(
-                    skill.getCode(), skill.getLevel().toString());
-            questions.addAll(questionsGraph);
-        }
-        return questions;
+  @Override
+  public List<Question> getQuestions(List<Skill> skills) {
+    List<Question> questions = new ArrayList<>();
+    for (Skill skill : skills) {
+      List<Question> questionsGraph = questionDao.getQuestions(skill.getCode(),
+          skill.getLevel().toString());
+      questions.addAll(questionsGraph);
     }
+    return questions;
+  }
 
-    @Override
-    public List<Question> getQuestions(String skill, SkillLevel skillLevel) {
-        List<Question> questions = questionDao.getQuestions(
-                skill, skillLevel.toString());
-        return questions;
-    }
+  @Override
+  public List<Question> getQuestions(String skill, SkillLevel skillLevel) {
+    return questionDao.getQuestions(skill, skillLevel.toString());
+  }
 
 }

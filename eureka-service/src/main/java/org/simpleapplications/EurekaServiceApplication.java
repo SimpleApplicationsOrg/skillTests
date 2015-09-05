@@ -1,5 +1,7 @@
 package org.simpleapplications;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,13 +13,15 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class EurekaServiceApplication {
 
-    @Bean
-    CommandLineRunner run(@Value("$message") String msg) {
-    	return args -> System.out.println("message = " + msg);
-    }
-    
-	
-	public static void main(String[] args) {
-        SpringApplication.run(EurekaServiceApplication.class, args);
-    }
+  private static final Logger LOGGER = LoggerFactory
+      .getLogger(EurekaServiceApplication.class);
+
+  @Bean
+  CommandLineRunner run(@Value("$message") String msg) {
+    return args -> LOGGER.info("message = " + msg);
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(EurekaServiceApplication.class, args);
+  }
 }

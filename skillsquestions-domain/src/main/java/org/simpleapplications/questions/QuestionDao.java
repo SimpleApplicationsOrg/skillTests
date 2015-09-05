@@ -7,8 +7,8 @@ import org.simpleapplications.skills.SkillLevel;
 
 public interface QuestionDao {
 
-    List<Question> getQuestions(List<Skill> skills);
+  List<Question> getQuestions(List<Skill> skills);
 
-    List<Question> getQuestions(String skill, SkillLevel skillLevel);
+  List<Question> getQuestions(String skill, SkillLevel skillLevel);
 
 }

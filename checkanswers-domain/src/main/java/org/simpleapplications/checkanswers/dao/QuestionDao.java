@@ -7,10 +7,10 @@ import org.simpleapplications.checkanswers.Question;
 
 public interface QuestionDao {
 
-	List<Answer> getCorrectAnswers(String code);
-	
-	Question getQuestion(Long id);
-	
-	Question getQuestionByCode(String code);
+  List<Answer> getCorrectAnswers(String code);
+
+  Question getQuestion(Long id);
+
+  Question getQuestionByCode(String code);
 
 }

@@ -12,6 +12,8 @@ import org.neo4j.cypher.javacompat.ExecutionEngine;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.HighlyAvailableGraphDatabaseFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
@@ -24,55 +26,57 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 @ComponentScan(basePackages = "org.simpleapplications")
 @EnableNeo4jRepositories
 public class CheckAnswersServiceApplication extends Neo4jConfiguration
-        implements CommandLineRunner {
+    implements CommandLineRunner {
 
-    public CheckAnswersServiceApplication() {
-        setBasePackage("org.simpleapplications");
+  private static final Logger LOGGER = LoggerFactory
+      .getLogger(CheckAnswersServiceApplication.class);
+
+  public CheckAnswersServiceApplication() {
+    setBasePackage("org.simpleapplications");
+  }
+
+  @Bean(destroyMethod = "shutdown")
+  public GraphDatabaseService graphDatabaseService() {
+    return new HighlyAvailableGraphDatabaseFactory()
+        .newHighlyAvailableDatabaseBuilder("target/multiplechoice.db")
+        .loadPropertiesFromFile("neo4j.properties").newGraphDatabase();
+
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(CheckAnswersServiceApplication.class, args);
+  }
+
+  @Override
+  public void run(String... args) throws Exception {
+    ExecutionEngine engine = new ExecutionEngine(getGraphDatabaseService());
+    List<String> queries = getQueries("import.cql");
+    for (String query : queries) {
+      try (Transaction tx = getGraphDatabaseService().beginTx()) {
+        LOGGER.info(engine.execute(query).dumpToString());
+        tx.success();
+      } catch (Exception e) {
+        LOGGER.error(e.getMessage(), e);
+      }
     }
+  }
 
-    @Bean(destroyMethod = "shutdown")
-    public GraphDatabaseService graphDatabaseService() {
-        return new HighlyAvailableGraphDatabaseFactory()
-                .newHighlyAvailableDatabaseBuilder("target/multiplechoice.db")
-                .loadPropertiesFromFile("neo4j.properties")
-                .newGraphDatabase();
-
+  private List<String> getQueries(String filename) {
+    List<String> lines = null;
+    try {
+      InputStream is = getClass().getResourceAsStream("/" + filename);
+      Reader fileReader = new InputStreamReader(is);
+      BufferedReader bufferedReader = new BufferedReader(fileReader);
+      lines = new ArrayList<String>();
+      String line = null;
+      while ((line = bufferedReader.readLine()) != null) {
+        lines.add(line);
+      }
+      bufferedReader.close();
+    } catch (IOException io) {
+      LOGGER.error("getQueries() IOException", io);
     }
-
-    public static void main(String[] args) {
-        SpringApplication.run(CheckAnswersServiceApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        ExecutionEngine engine = new ExecutionEngine(getGraphDatabaseService());
-        List<String> queries = getQueries("import.cql");
-        for (String query : queries) {
-            try (Transaction tx = getGraphDatabaseService().beginTx()) {
-                System.out.println(engine.execute(query).dumpToString());
-                tx.success();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private List<String> getQueries(String filename) {
-        List<String> lines = null;
-        try {
-            InputStream is = getClass().getResourceAsStream("/" + filename);
-            Reader fileReader = new InputStreamReader(is);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            lines = new ArrayList<String>();
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
-            }
-            bufferedReader.close();
-        } catch (IOException io) {
-            System.out.println("getQueries() IOException");
-        }
-        return lines;
-    }
+    return lines;
+  }
 
 }

@@ -12,29 +12,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class QuestionDaoImpl implements QuestionDao {
 
-	private QuestionDaoGraph questionDao;
+  private QuestionDaoGraph questionDao;
 
-	@Autowired
-	public QuestionDaoImpl(QuestionDaoGraph questionDao) {
-		this.questionDao = questionDao;
-	}
+  @Autowired
+  public QuestionDaoImpl(QuestionDaoGraph questionDao) {
+    this.questionDao = questionDao;
+  }
 
-	@Override
-	public List<Answer> getCorrectAnswers(String code) {
-		Question question = getQuestionByCode(code);
-		List<Answer> correctAnswers = question.getAnswers().stream()
-				.filter(a -> a.isCorrect()).collect(Collectors.toList());
-		return correctAnswers;
-	}
+  @Override
+  public List<Answer> getCorrectAnswers(String code) {
+    Question question = getQuestionByCode(code);
+    return question.getAnswers().stream().filter(a -> a.isCorrect())
+        .collect(Collectors.toList());
+  }
 
-	@Override
-	public Question getQuestion(Long id) {
-		return questionDao.findOne(id);
-	}
+  @Override
+  public Question getQuestion(Long id) {
+    return questionDao.findOne(id);
+  }
 
-	@Override
-	public Question getQuestionByCode(String code) {
-		return questionDao.getQuestionByCode(code);
-	}
+  @Override
+  public Question getQuestionByCode(String code) {
+    return questionDao.getQuestionByCode(code);
+  }
 
 }

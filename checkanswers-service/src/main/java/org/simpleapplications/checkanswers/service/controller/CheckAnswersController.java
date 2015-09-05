@@ -14,20 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/evaluate")
 public class CheckAnswersController {
 
-    private CheckAnswers checkAnswers;
+  private CheckAnswers checkAnswers;
 
-    @Autowired
-    public CheckAnswersController(
-            CheckAnswers checkAnswers) {
-        this.checkAnswers = checkAnswers;
-    }
+  @Autowired
+  public CheckAnswersController(CheckAnswers checkAnswers) {
+    this.checkAnswers = checkAnswers;
+  }
 
-    @RequestMapping(value = "/checkAnswers", method = RequestMethod.POST)
-    public List<Question> checkAnswers(@RequestBody List<Question> answeredQuestions) {
+  @RequestMapping(value = "/checkAnswers", method = RequestMethod.POST)
+  public List<Question> checkAnswers(
+      @RequestBody List<Question> answeredQuestions) {
 
-    	List<Question> questions = checkAnswers.evaluate(answeredQuestions);
-
-        return questions;
-    }
+    return checkAnswers.evaluate(answeredQuestions);
+  }
 
 }

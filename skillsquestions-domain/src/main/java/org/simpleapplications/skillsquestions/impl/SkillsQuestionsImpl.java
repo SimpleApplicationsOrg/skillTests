@@ -15,40 +15,39 @@ import org.springframework.stereotype.Component;
 @Component
 public class SkillsQuestionsImpl implements SkillsQuestions {
 
-    private QuestionDao questionDao;
+  private QuestionDao questionDao;
 
-    @Autowired
-    public SkillsQuestionsImpl(QuestionDao questionDao) {
-        validateQuestionDao(questionDao);
-        this.questionDao = questionDao;
-    }
+  @Autowired
+  public SkillsQuestionsImpl(QuestionDao questionDao) {
+    validateQuestionDao(questionDao);
+    this.questionDao = questionDao;
+  }
 
-    private void validateQuestionDao(QuestionDao questionDao) {
-        if (questionDao == null) {
-            throw new IllegalArgumentException("QuestionDao can not be null");
-        }
+  private void validateQuestionDao(QuestionDao questionDao) {
+    if (questionDao == null) {
+      throw new IllegalArgumentException("QuestionDao can not be null");
     }
+  }
 
-    @Override
-    public List<Question> getQuestions(List<Skill> skills) {
-        validateSkills(skills);
-        return questionDao.getQuestions(skills);
-    }
+  @Override
+  public List<Question> getQuestions(List<Skill> skills) {
+    validateSkills(skills);
+    return questionDao.getQuestions(skills);
+  }
 
-    private void validateSkills(List<Skill> skills) {
-        if (CollectionUtils.isEmpty(skills)) {
-            throw new IllegalArgumentException(
-                    "Skills can not be null or empty");
-        }
+  private void validateSkills(List<Skill> skills) {
+    if (CollectionUtils.isEmpty(skills)) {
+      throw new IllegalArgumentException("Skills can not be null or empty");
     }
+  }
 
-    @Override
-    public List<Question> getQuestions(String skill, String level) {
-        Validate.notBlank(skill,"Skill can not be null or empty");
-        Validate.notBlank(level, "Level can not be null or empty");
-        SkillLevel skillLevel = SkillLevel.valueOf(level);
-        
-        return questionDao.getQuestions(skill,skillLevel);
-    }
+  @Override
+  public List<Question> getQuestions(String skill, String level) {
+    Validate.notBlank(skill, "Skill can not be null or empty");
+    Validate.notBlank(level, "Level can not be null or empty");
+    SkillLevel skillLevel = SkillLevel.valueOf(level);
+
+    return questionDao.getQuestions(skill, skillLevel);
+  }
 
 }

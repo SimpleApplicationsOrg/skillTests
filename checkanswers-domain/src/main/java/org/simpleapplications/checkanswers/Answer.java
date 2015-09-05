@@ -9,36 +9,37 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Answer {
 
-	@GraphId
-	private Long id;
-	private String code;
-	private boolean correct;
-	
-	public Answer() {};
-	
-	public Answer(Long id) {
-		Validate.isTrue(id > 0, "Answer Id has to be > 0");
-		this.id = id;
-	}
+  @GraphId
+  private Long id;
+  private String code;
+  private boolean correct;
 
-	public Long getId() {
-		return this.id;
-	}
-	
-	public String getCode() {
-		return this.code;
-	}
-	
-	public void setCode(String code) {
-		this.code = code;
-	}
+  public Answer() {
+  }
 
-	public boolean isCorrect() {
-		return this.correct;
-	}
+  public Answer(Long id) {
+    Validate.isTrue(id > 0, "Answer Id has to be > 0");
+    this.id = id;
+  }
 
-	public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}
+  public Long getId() {
+    return this.id;
+  }
+
+  public String getCode() {
+    return this.code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public boolean isCorrect() {
+    return this.correct;
+  }
+
+  public void setCorrect(boolean correct) {
+    this.correct = correct;
+  }
 
 }

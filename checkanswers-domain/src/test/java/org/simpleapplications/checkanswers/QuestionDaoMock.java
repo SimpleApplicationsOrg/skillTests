@@ -7,29 +7,29 @@ import org.simpleapplications.checkanswers.dao.QuestionDao;
 
 public class QuestionDaoMock implements QuestionDao {
 
-	private final List<Question> dataSource = TestUtils
-			.getDataSource("datasourcetest.json");
+  private final List<Question> dataSource = TestUtils
+      .getDataSource("datasourcetest.json");
 
-	@Override
-	public List<Answer> getCorrectAnswers(String code) {
-		List<Answer> correctAnswers = dataSource.stream()
-				.filter(a -> a.getCode().equals(code)).map(a -> a.getAnswers())
-				.flatMap(a -> a.stream()).filter(a -> a.isCorrect())
-				.collect(Collectors.toList());
+  @Override
+  public List<Answer> getCorrectAnswers(String code) {
+    List<Answer> correctAnswers = dataSource.stream()
+        .filter(a -> a.getCode().equals(code)).map(a -> a.getAnswers())
+        .flatMap(a -> a.stream()).filter(a -> a.isCorrect())
+        .collect(Collectors.toList());
 
-		return correctAnswers;
-	}
+    return correctAnswers;
+  }
 
-	@Override
-	public Question getQuestion(Long id) {
-		return dataSource.stream().filter(a -> a.getId().equals(id))
-				.findFirst().get();
-	}
+  @Override
+  public Question getQuestion(Long id) {
+    return dataSource.stream().filter(a -> a.getId().equals(id)).findFirst()
+        .get();
+  }
 
-	@Override
-	public Question getQuestionByCode(String code) {
-		return dataSource.stream().filter(a -> a.getCode().equals(code))
-				.findFirst().get();
-	}
+  @Override
+  public Question getQuestionByCode(String code) {
+    return dataSource.stream().filter(a -> a.getCode().equals(code))
+        .findFirst().get();
+  }
 
 }

@@ -1,4 +1,4 @@
-package  org.simpleapplications.service.configuration;
+package org.simpleapplications.service.configuration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration(classes = ConfigurationServiceApplication.class)
 public class ConfigurationServiceApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+  @Test
+  public void contextLoads() {
+  }
 
 }
