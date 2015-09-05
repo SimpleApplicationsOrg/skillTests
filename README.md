@@ -1,3 +1,3 @@
 # skillTests
 
-https://travis-ci.org/SimpleApplicationsOrg/skillTests.svg?branch=master
+(https://travis-ci.org/SimpleApplicationsOrg/skillTests.svg?branch=master)
