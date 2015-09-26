@@ -32,7 +32,7 @@ public class QuestionDaoMock implements QuestionDao {
 
   private List<Question> getData() {
 
-    Skill skillCode1 = new Skill("Code1", "Name1", SkillLevel.BEGGINER);
+    Skill skillCode1 = new Skill("Code1", "Name1", SkillLevel.BEGINNER);
 
     Question question1 = new Question("Question1");
     question1.setText("Question1?");

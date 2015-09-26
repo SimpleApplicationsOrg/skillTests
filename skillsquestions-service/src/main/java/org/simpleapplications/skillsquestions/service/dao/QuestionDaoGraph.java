@@ -10,7 +10,7 @@ public interface QuestionDaoGraph extends CRUDRepository<Question> {
 
   @Query("MATCH (q:Question)-[:HAS_ANSWER]->(a:Answer),"
       + "(q:Question)-[:FOR_SKILL]->(s:Skill)"
-      + " WHERE s.code={0} and s.level={1} RETURN q")
+      + " WHERE s.code={0} and s.level={1} RETURN distinct q")
   List<Question> getQuestions(String skillCode, String level);
 
 }

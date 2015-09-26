@@ -10,14 +10,14 @@ public class SkillTest {
 
   @Test
   public void testIsValid() {
-    Skill skill = new Skill("skill.code", "Skill Name", SkillLevel.BEGGINER);
+    Skill skill = new Skill("skill.code", "Skill Name", SkillLevel.BEGINNER);
     assertTrue("Skill is not valid", skill.getCode() != null
         && skill.getName() != null && skill.getLevel() != null);
   }
 
   @Test
   public void testIsValidLevelString() {
-    Skill skill = new Skill("skill.code", "Skill Name", "BEGGINER");
+    Skill skill = new Skill("skill.code", "Skill Name", "BEGINNER");
     assertTrue("Skill is not valid", skill.getCode() != null
         && skill.getName() != null && skill.getLevel() != null);
   }
@@ -29,12 +29,12 @@ public class SkillTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testSkillNull() {
-    new Skill("skill.code", null, SkillLevel.BEGGINER);
+    new Skill("skill.code", null, SkillLevel.BEGINNER);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testCodeBlank() {
-    new Skill("", "Skill Name", SkillLevel.BEGGINER);
+    new Skill("", "Skill Name", SkillLevel.BEGINNER);
   }
 
   @Test(expected = IllegalArgumentException.class)

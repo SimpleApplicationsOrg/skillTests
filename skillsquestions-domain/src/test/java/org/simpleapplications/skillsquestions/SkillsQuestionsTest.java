@@ -36,7 +36,7 @@ public class SkillsQuestionsTest {
         "getQuestions didn't work!",
         multipleChoice.getQuestions(this.getSkillsBegginer()).stream()
             .map(a -> a.getSkill().getLevel())
-            .allMatch(a -> a.equals(SkillLevel.BEGGINER)));
+            .allMatch(a -> a.equals(SkillLevel.BEGINNER)));
   }
 
   @Test
@@ -73,15 +73,15 @@ public class SkillsQuestionsTest {
     SkillsQuestions multipleChoice = new SkillsQuestionsImpl(questionDao);
     assertTrue(
         "getQuestions didn't work!",
-        multipleChoice.getQuestions("Code1", "BEGGINER").stream()
+        multipleChoice.getQuestions("Code1", "BEGINNER").stream()
             .map(a -> a.getSkill().getLevel())
-            .allMatch(a -> a.equals(SkillLevel.BEGGINER)));
+            .allMatch(a -> a.equals(SkillLevel.BEGINNER)));
   }
 
   private List<Skill> getSkillsBegginer() {
     List<Skill> skills = new ArrayList<>();
-    skills.add(new Skill("Code1", "Name1", SkillLevel.BEGGINER));
-    skills.add(new Skill("Code2", "Name2", SkillLevel.BEGGINER));
+    skills.add(new Skill("Code1", "Name1", SkillLevel.BEGINNER));
+    skills.add(new Skill("Code2", "Name2", SkillLevel.BEGINNER));
     return skills;
   }
 

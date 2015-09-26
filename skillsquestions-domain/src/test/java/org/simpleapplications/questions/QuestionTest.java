@@ -15,7 +15,7 @@ public class QuestionTest {
   @Test
   public void testQuestionCretion() {
     List<Answer> answers = TestUtils.getGoodAnswers();
-    Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGGINER);
+    Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGINNER);
 
     String codeQuestion = "CodeQuestion";
     Question question = new Question(codeQuestion);
@@ -29,7 +29,7 @@ public class QuestionTest {
 
   @Test
   public void testSetSkill() {
-    Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGGINER);
+    Skill skill = new Skill("CodeSkill", "Name", SkillLevel.BEGINNER);
 
     String codeQuestion = "CodeQuestion";
     Question question = new Question(codeQuestion);

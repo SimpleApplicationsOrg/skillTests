@@ -12,5 +12,6 @@
   	<module>./skillsquestions-service</module>
   	<module>./checkanswers-domain</module>
   	<module>./checkanswers-service</module>
+  	<module>./skillsquestions-ui</module>
   </modules>
 </project>

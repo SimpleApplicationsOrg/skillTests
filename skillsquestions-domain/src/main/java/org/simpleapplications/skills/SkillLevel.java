@@ -1,6 +1,6 @@
 package org.simpleapplications.skills;
 
 public enum SkillLevel {
-  BEGGINER, INTERMEDIATE
+  BEGINNER, INTERMEDIATE, ADVANCED
 
 }
