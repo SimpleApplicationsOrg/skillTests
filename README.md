@@ -1,6 +1,6 @@
 # skillTests ![](https://travis-ci.org/SimpleApplicationsOrg/skillTests.svg?branch=master)
 
-Projet to test some spring framework technologies together. Still in progress...
+Project to test some spring framework technologies together. Still in progress...
 
 - Use as few as possible frameworks in the domains (skillsquestions-domain and checkanswers-domain).
 - Use some Spring-Cloud components: configuration (configuration-service), eureka (eureka-service), feign and hystrix (skillsquestions-ui). 
