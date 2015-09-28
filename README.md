@@ -1,4 +1,4 @@
-# skillTests ![](https://travis-ci.org/SimpleApplicationsOrg/skillTests.svg?branch=master)
+# skillTests ![](https://travis-ci.org/SimpleApplicationsOrg/skillTests.svg?branch=master) [![codecov.io](http://codecov.io/github/SimpleApplicationsOrg/skillTests/coverage.svg?branch=master)](http://codecov.io/github/SimpleApplicationsOrg/skillTests?branch=master)
 
 Project to test some spring framework technologies together. Still in progress...
 
