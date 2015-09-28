@@ -14,9 +14,8 @@ public class QuestionTest {
 		final List<Answer> ANSWERS = new ArrayList<>();
 		final String CODE = "CODE";
 		final String TEXT = "TEXT";
-		Question question = new Question();
+		Question question = new Question(CODE);
 		question.setAnswers(ANSWERS);
-		question.setCode(CODE);
 		question.setText(TEXT);
 		assertTrue("Question not working", CODE.equals(question.getCode()) && TEXT.equals(question.getText())
 				&& ANSWERS.equals(question.getAnswers()));
