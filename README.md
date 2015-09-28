@@ -2,11 +2,11 @@
 
 Projet to test some spring framework technologies together. Still in progress...
 
-The idea is using as few as possible frameworks in the domains (skillsquestions-domain and checkanswers-domain).
-Use some Spring-Cloud components: configuration (configuration-service), eureka (eureka-service), feign and hystrix (skillsquestions-ui). 
-Make services available with Spring-Boot and Spring-Web (skillsquestions-service and checkanswers-service).
-Make some data available with Spring-Data-Neo4j (skillsquestions-service and checkanswers-service).
-Make UI with Spring-Boot, thymeleaf and bootstrap (skillsquestions-ui).
+- Use as few as possible frameworks in the domains (skillsquestions-domain and checkanswers-domain).
+- Use some Spring-Cloud components: configuration (configuration-service), eureka (eureka-service), feign and hystrix (skillsquestions-ui). 
+- Make services available with Spring-Boot and Spring-Web (skillsquestions-service and checkanswers-service).
+- Make some data available with Spring-Data-Neo4j (skillsquestions-service and checkanswers-service).
+- Make UI with Spring-Boot, thymeleaf and bootstrap (skillsquestions-ui).
 
 Some links that will explain all the stuff:
 
@@ -21,5 +21,4 @@ Some links that will explain all the stuff:
 Todo:
 - Add security with Spring Security.
 - Manage user session with Spring Session.
-- For now, it uses neo4j embedded. Will connect to graphenedb. 
-- 
+- For now, it uses neo4j embedded. Will connect to graphenedb.
