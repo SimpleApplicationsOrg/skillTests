@@ -11,7 +11,7 @@ import java.util.List;
 import org.neo4j.cypher.javacompat.ExecutionEngine;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
-import org.neo4j.graphdb.factory.HighlyAvailableGraphDatabaseFactory;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -37,9 +37,7 @@ public class CheckAnswersServiceApplication extends Neo4jConfiguration
 
   @Bean(destroyMethod = "shutdown")
   public GraphDatabaseService graphDatabaseService() {
-    return new HighlyAvailableGraphDatabaseFactory()
-        .newHighlyAvailableDatabaseBuilder("target/multiplechoice.db")
-        .loadPropertiesFromFile("neo4j.properties").newGraphDatabase();
+    return new GraphDatabaseFactory().newEmbeddedDatabase("target/multiplechoice.db");
 
   }
 

@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.neo4j.cypher.javacompat.ExecutionEngine;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
-import org.neo4j.graphdb.factory.HighlyAvailableGraphDatabaseFactory;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -42,11 +41,8 @@ public class SkillsQuestionsServiceApplication extends Neo4jConfiguration
   }
 
   @Bean(destroyMethod = "shutdown")
-  public GraphDatabaseService graphDatabaseService()
-      throws MalformedURLException {
-    return new HighlyAvailableGraphDatabaseFactory()
-        .newHighlyAvailableDatabaseBuilder("target/multiplechoice.db")
-        .loadPropertiesFromFile("neo4j.properties").newGraphDatabase();
+  public GraphDatabaseService graphDatabaseService() {
+    return new GraphDatabaseFactory().newEmbeddedDatabase("target/multiplechoice.db");
   }
 
   public static void main(String[] args) {
