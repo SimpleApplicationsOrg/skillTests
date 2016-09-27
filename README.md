@@ -3,4 +3,4 @@
 
 Do you want to know more about this project? Check the [wiki](https://github.com/SimpleApplicationsOrg/skillTests/wiki).
 
-The project is still in development, so there are lots of things [to do](https://github.com/SimpleApplicationsOrg/skillTests/issues).
+The project is still in development, so there are lots of things [to do](https://github.com/SimpleApplicationsOrg/skillTests/issues). 
